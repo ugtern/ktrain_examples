@@ -14,3 +14,10 @@ MAXLEN = 500
                       max_features=NUM_WORDS, maxlen=MAXLEN,
                       ngram_range=1)
 
+model = text.text_classifier('fasttext', (x_train, y_train),
+                             preproc=preproc)
+
+learner = ktrain.get_learner(model, train_data=(x_train, y_train), val_data=(x_test, y_test))
+learner.autofit(1e-2)
+predictor = ktrain.get_predictor(learner.model, preproc)
+predictor.save('predictor_fasttext')

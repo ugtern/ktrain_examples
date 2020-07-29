@@ -1,3 +1,4 @@
 ktrain
 numpy
 pandas
+jupyterlab
